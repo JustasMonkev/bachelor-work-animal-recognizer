@@ -1,0 +1,7 @@
+{
+  "name": "PhotoGalleryApp",
+  "displayName": "PhotoGalleryApp",
+  "android": {
+    "package": "com.anonymous.photogalleryapp"
+  }
+}
