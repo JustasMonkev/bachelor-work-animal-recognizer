@@ -3,6 +3,7 @@ import {ScrollView, Image, StyleSheet, View} from 'react-native';
 import {Card, Text} from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AnimalInfoScreenProps} from '../components/AppNavigator.tsx';
+import {colors} from '../utils/theme';
 
 interface SectionProps {
   title: string;
@@ -109,7 +110,7 @@ const formatSize = (size: Size) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F0F0F3',
+    backgroundColor: colors.background,
   },
   image: {
     width: '100%',
@@ -120,14 +121,14 @@ const styles = StyleSheet.create({
   commonName: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#2D3748',
+    color: colors.textPrimary,
     marginBottom: 10,
     textAlign: 'center',
   },
   scientificName: {
     fontSize: 22,
     fontStyle: 'italic',
-    color: '#4A5568',
+    color: colors.textSecondary,
     marginBottom: 25,
     textAlign: 'center',
   },
@@ -139,17 +140,17 @@ const styles = StyleSheet.create({
   keyText: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#2D3748',
+    color: colors.textPrimary,
     minWidth: 130,
   },
   valueText: {
     fontSize: 18,
-    color: '#4A5568',
+    color: colors.textSecondary,
     flex: 1,
     flexWrap: 'wrap',
   },
   section: {
-    backgroundColor: '#FFF',
+    backgroundColor: colors.surface,
     borderRadius: 10,
     padding: 20,
     marginBottom: 30,
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
+    color: colors.primary,
     marginBottom: 15,
   },
   sectionContainer: {
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
   },
   sectionDivider: {
     height: 1,
-    backgroundColor: '#DDDDDD',
+    backgroundColor: colors.border,
     marginHorizontal: 20,
   },
   cardContainer: {

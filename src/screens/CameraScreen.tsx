@@ -18,7 +18,8 @@ import {useNavigation} from '@react-navigation/native';
 import {RootNavigationProp} from '../components/AppNavigator.tsx';
 import {getImageForApi} from '../utils/utils.ts';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {useFocusEffect} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {colors} from '../utils/theme';
 
 export default function CameraScreen() {
   const {addImage} = useImages();
@@ -36,18 +37,6 @@ export default function CameraScreen() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [lastCapturedImage, setLastCapturedImage] = useState('');
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     // Reset the necessary state variables when the screen comes into focus
-  //     setShowCamera(true);
-  //     setIsButtonDisabled(false);
-  //     setIsLoading(false);
-  //
-  //     return () => {};
-  //   }, []),
-  // );
-
   useEffect(() => {
     async function getPermissions() {
       const newCameraPermission = await request(PERMISSIONS.ANDROID.CAMERA);
@@ -261,15 +250,14 @@ export default function CameraScreen() {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.searchButton}
-              onPress={() => capturePhoto()}>
-              <Image
-                source={require('./search-icon.png')}
-                style={styles.searchIcon}
-              />
+              onPress={() => capturePhoto()}
+              accessibilityLabel="Capture Photo">
+              <Icon name="camera" size={32} color={colors.surface} />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.galleryButton}
-              onPress={handleImagePicker}>
+              onPress={handleImagePicker}
+              accessibilityLabel="Open Gallery">
               {lastCapturedImage ? (
                 <Image
                   source={{
@@ -284,7 +272,8 @@ export default function CameraScreen() {
             {lastCapturedImage ? (
               <TouchableOpacity
                 style={styles.historyButton}
-                onPress={handleNavigateToHistory}>
+                onPress={handleNavigateToHistory}
+                accessibilityLabel="View History">
                 <Text style={styles.historyButtonText}>Istorija</Text>
               </TouchableOpacity>
             ) : null}
@@ -311,7 +300,7 @@ export default function CameraScreen() {
       )}
       {isLoading ? (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" color="#00ff00" />
+          <ActivityIndicator size="large" color={colors.primary} />
         </View>
       ) : null}
     </View>
@@ -323,27 +312,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  button: {
-    backgroundColor: 'gray',
+    backgroundColor: colors.background,
   },
   buttonContainer: {
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
     bottom: 0,
     padding: 20,
-  },
-  camButton: {
-    height: 80,
-    width: 80,
-    borderRadius: 40,
-    backgroundColor: '#B2BEB5',
-    alignSelf: 'center',
-    borderWidth: 4,
-    borderColor: 'white',
   },
   image: {
     width: '100%',
@@ -360,29 +338,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  navigationButton: {
-    backgroundColor: 'blue',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  navigationButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
   searchButton: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: 'white',
+    backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  searchIcon: {
-    width: 24,
-    height: 24,
   },
   galleryButton: {
     position: 'absolute',
@@ -391,7 +353,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: 'white',
+    backgroundColor: colors.secondary,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -403,6 +365,7 @@ const styles = StyleSheet.create({
   galleryButtonText: {
     fontSize: 12,
     fontWeight: 'bold',
+    color: colors.surface,
   },
   historyButton: {
     position: 'absolute',
@@ -411,12 +374,13 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: 'white',
+    backgroundColor: colors.accent,
     justifyContent: 'center',
     alignItems: 'center',
   },
   historyButtonText: {
     fontSize: 12,
     fontWeight: 'bold',
+    color: colors.textPrimary,
   },
 });
