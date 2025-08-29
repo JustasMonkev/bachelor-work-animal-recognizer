@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {colors} from '../theme/colors';
 
 interface CameraButtonsProps {
   setShowCamera: (showCamera: boolean) => void;
@@ -17,14 +18,16 @@ export default function CameraButtons({
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.closeButton}
-        onPress={() => setShowCamera(true)}>
-        <Icon name="close" size={32} color="white" />
+        onPress={() => setShowCamera(true)}
+        accessibilityLabel="Retake photo">
+        <Icon name="close" size={32} color={colors.surface} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.confirmButton}
         onPress={saveImage}
-        disabled={disableButton}>
-        <Icon name="check" size={32} color="white" />
+        disabled={disableButton}
+        accessibilityLabel="Save photo">
+        <Icon name="check" size={32} color={colors.surface} />
       </TouchableOpacity>
     </View>
   );
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   closeButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: colors.secondary,
     borderRadius: 30,
     width: 60,
     height: 60,
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   confirmButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: colors.primary,
     borderRadius: 30,
     width: 60,
     height: 60,

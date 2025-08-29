@@ -18,7 +18,7 @@ import {useNavigation} from '@react-navigation/native';
 import {RootNavigationProp} from '../components/AppNavigator.tsx';
 import {getImageForApi} from '../utils/utils.ts';
 import {launchImageLibrary} from 'react-native-image-picker';
-import {useFocusEffect} from '@react-navigation/native';
+import {colors} from '../theme/colors';
 
 export default function CameraScreen() {
   const {addImage} = useImages();
@@ -261,7 +261,8 @@ export default function CameraScreen() {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.searchButton}
-              onPress={() => capturePhoto()}>
+              onPress={() => capturePhoto()}
+              accessibilityLabel="Capture photo">
               <Image
                 source={require('./search-icon.png')}
                 style={styles.searchIcon}
@@ -269,7 +270,8 @@ export default function CameraScreen() {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.galleryButton}
-              onPress={handleImagePicker}>
+              onPress={handleImagePicker}
+              accessibilityLabel="Open gallery">
               {lastCapturedImage ? (
                 <Image
                   source={{
@@ -284,7 +286,8 @@ export default function CameraScreen() {
             {lastCapturedImage ? (
               <TouchableOpacity
                 style={styles.historyButton}
-                onPress={handleNavigateToHistory}>
+                onPress={handleNavigateToHistory}
+                accessibilityLabel="Open history">
                 <Text style={styles.historyButtonText}>Istorija</Text>
               </TouchableOpacity>
             ) : null}
@@ -311,7 +314,7 @@ export default function CameraScreen() {
       )}
       {isLoading ? (
         <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" color="#00ff00" />
+          <ActivityIndicator size="large" color={colors.primary} />
         </View>
       ) : null}
     </View>
@@ -323,9 +326,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: colors.background,
   },
   button: {
-    backgroundColor: 'gray',
+    backgroundColor: colors.primary,
   },
   buttonContainer: {
     backgroundColor: 'rgba(0,0,0,0.4)',
@@ -340,10 +344,10 @@ const styles = StyleSheet.create({
     height: 80,
     width: 80,
     borderRadius: 40,
-    backgroundColor: '#B2BEB5',
+    backgroundColor: colors.accent,
     alignSelf: 'center',
     borderWidth: 4,
-    borderColor: 'white',
+    borderColor: colors.surface,
   },
   image: {
     width: '100%',
@@ -361,14 +365,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   navigationButton: {
-    backgroundColor: 'blue',
+    backgroundColor: colors.secondary,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     marginTop: 20,
   },
   navigationButtonText: {
-    color: 'white',
+    color: colors.surface,
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -376,7 +380,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: 'white',
+    backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -391,7 +395,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: 'white',
+    backgroundColor: colors.accent,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -403,6 +407,7 @@ const styles = StyleSheet.create({
   galleryButtonText: {
     fontSize: 12,
     fontWeight: 'bold',
+    color: colors.surface,
   },
   historyButton: {
     position: 'absolute',
@@ -411,12 +416,13 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: 'white',
+    backgroundColor: colors.secondary,
     justifyContent: 'center',
     alignItems: 'center',
   },
   historyButtonText: {
     fontSize: 12,
     fontWeight: 'bold',
+    color: colors.surface,
   },
 });

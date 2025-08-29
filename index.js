@@ -12,4 +12,3 @@ AppRegistry.registerComponent(appName, () => App);
 
 // Ignore log notification by message:
 LogBox.ignoreLogs(['Warning: ...']);
-

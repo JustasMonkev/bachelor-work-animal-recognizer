@@ -7,6 +7,7 @@ import {
 import AnimalInfoScreen from '../screens/AnimalInfoScreen';
 import CameraScreen from '../screens/CameraScreen.tsx';
 import HistoryScreen from '../screens/HistoryScreen'; // Adjust the path as necessary
+import {colors} from '../theme/colors';
 
 type RootStackParamList = {
   Camera: undefined;
@@ -45,7 +46,12 @@ export type RootNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const AppNavigator: React.FC = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: colors.primary},
+        headerTintColor: colors.surface,
+        headerTitleStyle: {color: colors.surface},
+      }}>
       <Stack.Screen
         name="Camera"
         component={CameraScreen}

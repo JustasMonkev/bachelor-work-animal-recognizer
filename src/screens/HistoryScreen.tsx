@@ -7,6 +7,7 @@ import {
   View,
   Text,
 } from 'react-native';
+import {colors} from '../theme/colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {RootNavigationProp} from '../components/AppNavigator.tsx';
@@ -51,7 +52,8 @@ const HistoryScreen = () => {
         <TouchableOpacity
           key={index}
           style={styles.cardContainer}
-          onPress={() => handleCardPress(item)}>
+          onPress={() => handleCardPress(item)}
+          accessibilityLabel={`View details for ${item.commonName}`}>
           <View style={styles.card}>
             <Image source={{uri: item.imagePath}} style={styles.image} />
             <View style={styles.textContainer}>
@@ -68,7 +70,7 @@ const HistoryScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F0F0F3',
+    backgroundColor: colors.background,
   },
   cardContainer: {
     marginHorizontal: 20,
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.surface,
   },
   card: {
     borderRadius: 10,
@@ -99,14 +101,14 @@ const styles = StyleSheet.create({
   commonName: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#2D3748',
+    color: colors.primary,
     marginBottom: 5,
     textAlign: 'center',
   },
   scientificName: {
     fontSize: 18,
     fontStyle: 'italic',
-    color: '#4A5568',
+    color: colors.secondary,
     textAlign: 'center',
   },
 });
